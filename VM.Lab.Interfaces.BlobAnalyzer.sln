@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VM.Lab.Interfaces.BlobAnalyzer", "VM.Lab.Interfaces.BlobAnalyzer\VM.Lab.Interfaces.BlobAnalyzer.csproj", "{5A2DACAF-5A37-4659-B9B7-71004F2FED92}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionFolder", "SolutionFolder", "{4A85A890-A38C-45CF-BB67-52ECD6C327FC}"
+	ProjectSection(SolutionItems) = preProject
+		LICENSE = LICENSE
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5A2DACAF-5A37-4659-B9B7-71004F2FED92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5A2DACAF-5A37-4659-B9B7-71004F2FED92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5A2DACAF-5A37-4659-B9B7-71004F2FED92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5A2DACAF-5A37-4659-B9B7-71004F2FED92}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
