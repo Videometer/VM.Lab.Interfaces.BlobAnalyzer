@@ -3,19 +3,19 @@
 	/// <summary>Enumerator with autofeeder states</summary>
 	public enum AutofeederState
 	{
-		/// <summary></summary>
+		/// <summary>Blob Analyzer is ready for commands, a recipe can also be loaded</summary>
 		Idle = 0,
 
-		/// <summary></summary>
+		/// <summary>Blob Analyzer is working</summary>
 		Running,
 
-		/// <summary></summary>
+		/// <summary>Blob analyzer is flushing</summary>
 		Flushing,
 
-		/// <summary></summary>
+		/// <summary>Blob analyzer is stopping</summary>
 		Stopping,
 
-		/// <summary></summary>
+		/// <summary>Blob analyzer is stopped</summary>
 		Stopped,
 	}
 }

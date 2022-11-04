@@ -33,6 +33,21 @@ Interface to control an __autofeeder__ from an external plugin, the plugin could
 ## AutofeederControl
 Autofeeder communication controller, Types that implement this class will be detected and gives the implementer the ability to control the Autofeeder
 
+Control loop for Blob Analyzers, the diagram shows when the Start,Stop and Flush command are possible, 
+```mermaid
+stateDiagram-v2 
+  direction LR
+* --> idle
+idle --> Running : Start
+Running --> Flushing : Low coverage
+Running --> Stopping : Stop
+Flushing --> Stopping : Done / Stop
+Stopping --> Stopped
+Stopped --> Flushing : Flush
+Stopped --> idle : Finish (Save results) 
+```
+
+Class diagram overview
 ```mermaid
 classDiagram
     
@@ -71,3 +86,4 @@ class WaitCondition {
     +Wait_CaptureThread_Done
 }
 ```
+
