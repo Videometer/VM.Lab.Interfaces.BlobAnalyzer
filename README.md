@@ -19,8 +19,6 @@ Notice, that interface is called Autofeeder* in many cases, this is due to legac
 
 The interface exposes the basic features that is available from the user interface
 
-
-
 ## AutofeederState
 Represents the state of the autofeeder, used to communicate state transitions to the controller
 
@@ -57,6 +55,7 @@ class IAutofeederControlListener {
     Task Stop(WaitCondition waitCondition, bool doFlush = false)
     Task Flush();
     Task Finish();
+    Task LoadRecipe(string recipeName)
 }
 
 class AutofeederControl {
@@ -87,3 +86,34 @@ class WaitCondition {
 }
 ```
 
+```csharp
+public interface IAutofeederControlListener
+{
+    /// <summary>
+    /// Loads a recipe
+    /// if an absolute path (local or cloud), the recipe is loaded given the absolute path
+    /// if not an absolute path, the recipe is loaded from the current active workspace
+    /// </summary>
+    /// <param name="recipeName"></param>
+    /// <returns></returns>
+    Task LoadRecipe(string recipeName);
+    
+    /// <summary>Start a new measurement</summary>
+    /// <param name="id">ID of the sample</param>
+    /// <param name="initials">Operator initials</param>
+    /// <param name="comments">Operator comments</param>
+    Task Start(string id, string initials, string comments);
+
+    /// <summary>Stop/Pause the current measurement</summary>
+    /// <param name="waitCondition">What to wait on when stopping</param>
+    /// <param name="doFlush">Controls if a flush is done during stopping of the autofeeder.
+    /// This is wanted e.g. in the case of stopping due to low coverage.</param>
+    Task Stop(WaitCondition waitCondition, bool doFlush = false);
+
+    /// <summary>Flush the conveyor</summary>
+    Task Flush();
+
+    /// <summary>Finish the actual measurement</summary>
+    Task Finish();
+}
+```
