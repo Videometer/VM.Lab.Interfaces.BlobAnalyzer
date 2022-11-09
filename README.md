@@ -35,8 +35,12 @@ Control loop for Blob Analyzers, the diagram shows when the Start,Stop and Flush
 ```mermaid
 stateDiagram-v2 
   direction LR
-* --> idle
+* --> WaitingRecipe
+WaitingRecipe --> LoadingRecipe : Load Recipe
 idle --> Running : Start
+idle --> LoadingRecipe : Load Recipe
+LoadingRecipe --> idle : Load Success
+LoadingRecipe --> WaitingRecipe : Load failed
 Running --> Flushing : Low coverage
 Running --> Stopping : Stop
 Flushing --> Stopping : Done / Stop
@@ -51,11 +55,17 @@ classDiagram
     
 class IAutofeederControlListener {
     <<interface>>
-    Task Start(string id, string initials, string comments);
+    Task LoadRecipe(string recipeName)
+    Task Start(string sampleId, string initials, string comments, ResultSpecification resultSavingSpecification);
     Task Stop(WaitCondition waitCondition, bool doFlush = false)
     Task Flush();
     Task Finish();
-    Task LoadRecipe(string recipeName)
+}
+
+AutofeederControl -- ResultSpecification
+class ResultSpecification {
+  +string PredictionResultFilename
+  +string BlobCollectionFolder
 }
 
 class AutofeederControl {
@@ -63,8 +73,6 @@ class AutofeederControl {
 	#IAutofeederControlListener _listener
     +AutofeederControl(IAutofeederControlListener listener)
     +void StateChanged(AutofeederState oldState, AutofeederState newState, string sampleId, DataTable result)*
-    +string GetBlobCollectionSubfolder(DateTime measurementStartTime)*
-    +string GetPredictionResultFilename(DateTime measurementStartTime)*
 }
 AutofeederControl *-- IAutofeederControlListener
 AutofeederState --> AutofeederControl
@@ -75,15 +83,10 @@ class AutofeederState {
     +Flushing
     +Stopping
     +Stopped
+    +LoadingRecipe
+    +WaitingRecipe
 }
 
-WaitCondition --> IAutofeederControlListener
-class WaitCondition {
-    <<Enum>>
-	+DontWait,
-    +Wait_All_Queues_Empty,
-    +Wait_CaptureThread_Done
-}
 ```
 
 ```csharp
@@ -102,7 +105,7 @@ public interface IAutofeederControlListener
     /// <param name="id">ID of the sample</param>
     /// <param name="initials">Operator initials</param>
     /// <param name="comments">Operator comments</param>
-    Task Start(string id, string initials, string comments);
+    Task Start(string id, string initials, string comments, ResultSpecification resultSpecification);
 
     /// <summary>Stop/Pause the current measurement</summary>
     /// <param name="waitCondition">What to wait on when stopping</param>
