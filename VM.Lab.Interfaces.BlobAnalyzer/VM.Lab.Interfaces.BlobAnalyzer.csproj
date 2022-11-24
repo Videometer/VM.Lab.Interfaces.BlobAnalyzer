@@ -1,9 +1,21 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
+    <PropertyGroup>
+        <Version>0.0.0.0</Version>
+    </PropertyGroup>
+    <PropertyGroup>
+        <ProjectGuid>{2f6762d3-b243-4f5e-9cb8-746efcd866fc}</ProjectGuid>
+        <RootNamespace>VM.Lab.Interfaces.BlobAnalyzer</RootNamespace>
+        <AssemblyName>VM.Lab.Interfaces.BlobAnalyzer</AssemblyName>
+        <TargetFramework>netstandard2.0</TargetFramework>
+        <LangVersion>7.3</LangVersion>
+        <Company>Videometer</Company>
+    </PropertyGroup>
     <PropertyGroup>
         <TargetFramework>netstandard2.0</TargetFramework>
-        <AssemblyVersion>0.0.0.0</AssemblyVersion>
-        <FileVersion>0.0.0.0</FileVersion>
+    </PropertyGroup>
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+        <WarningsAsErrors />
     </PropertyGroup>
 
 </Project>
