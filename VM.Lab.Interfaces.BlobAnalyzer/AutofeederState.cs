@@ -1,4 +1,4 @@
-﻿namespace VM.Lab.Interfaces.Autofeeder
+﻿namespace VM.Lab.Interfaces.BlobAnalyzer
 {
 	/// <summary>Enumerator with autofeeder states</summary>
 	public enum AutofeederState

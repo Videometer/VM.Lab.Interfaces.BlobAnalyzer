@@ -1,6 +1,6 @@
 ﻿using System.Threading.Tasks;
 
-namespace VM.Lab.Interfaces.Autofeeder
+namespace VM.Lab.Interfaces.BlobAnalyzer
 {
 	/// <summary>Interface for controlling the autofeeder</summary>
 	public interface IAutofeederControlListener

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Data;
 
-namespace VM.Lab.Interfaces.Autofeeder
+namespace VM.Lab.Interfaces.BlobAnalyzer
 {
 	/// <summary> 
 	/// Blob Analyzer communication controller
