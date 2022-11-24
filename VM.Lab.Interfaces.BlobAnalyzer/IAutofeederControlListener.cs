@@ -12,22 +12,22 @@ namespace VM.Lab.Interfaces.BlobAnalyzer
 		/// </summary>
 		/// <param name="recipeName"></param>
 		/// <returns></returns>
-		Task LoadRecipe(string recipeName);
+		bool LoadRecipe(string recipeName);
 		
 		/// <summary>Start a new measurement</summary>
 		/// <param name="id">ID of the sample</param>
 		/// <param name="initials">Operator initials</param>
 		/// <param name="comments">Operator comments</param>
-		Task Start(string id, string initials, string comments);
+		void Start(string id, string initials, string comments);
 
 		/// <summary>Stop/Pause the current measurement</summary>
 		/// This is wanted e.g. in the case of stopping due to low coverage.</param>
-		Task Stop();
+		void Stop();
 
 		/// <summary>Flush the conveyor</summary>
-		Task Flush();
+		void Flush();
 
 		/// <summary>Finish the actual measurement</summary>
-		Task Finish();
+		void Finish();
 	}
 }
