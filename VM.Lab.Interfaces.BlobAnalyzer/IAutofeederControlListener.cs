@@ -21,10 +21,8 @@ namespace VM.Lab.Interfaces.BlobAnalyzer
 		Task Start(string id, string initials, string comments);
 
 		/// <summary>Stop/Pause the current measurement</summary>
-		/// <param name="waitCondition">What to wait on when stopping</param>
-		/// <param name="doFlush">Controls if a flush is done during stopping of the autofeeder.
 		/// This is wanted e.g. in the case of stopping due to low coverage.</param>
-		Task Stop(WaitCondition waitCondition, bool doFlush = false);
+		Task Stop();
 
 		/// <summary>Flush the conveyor</summary>
 		Task Flush();
