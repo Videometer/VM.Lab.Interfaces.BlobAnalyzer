@@ -12,7 +12,7 @@ namespace VM.Lab.Interfaces.BlobAnalyzer
 		/// </summary>
 		/// <param name="recipeName"></param>
 		/// <returns></returns>
-		bool LoadRecipe(string recipeName);
+		void LoadRecipe(string recipeName);
 		
 		/// <summary>Start a new measurement</summary>
 		/// <param name="id">ID of the sample</param>
