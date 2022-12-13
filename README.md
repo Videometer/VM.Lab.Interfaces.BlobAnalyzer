@@ -22,9 +22,6 @@ The interface exposes the basic features that is available from the user interfa
 ## AutofeederState
 Represents the state of the autofeeder, used to communicate state transitions to the controller
 
-## WaitCondition
-Defines how to wait when stopping. 
-
 ## IAutofeederControlListener
 Interface to control an __autofeeder__ from an external plugin, the plugin could be used to control any granularDevice, but for now it is used for the autofeeder 
 
@@ -33,20 +30,39 @@ Autofeeder communication controller, Types that implement this class will be det
 
 Control loop for Blob Analyzers, the diagram shows when the Start,Stop and Flush command are possible, 
 ```mermaid
-stateDiagram-v2 
-  direction LR
-* --> WaitingRecipe
-WaitingRecipe --> LoadingRecipe : Load Recipe
-idle --> Running : Start
-idle --> LoadingRecipe : Load Recipe
-LoadingRecipe --> idle : Load Success
-LoadingRecipe --> WaitingRecipe : Load failed
-Running --> Flushing : Low coverage
-Running --> Stopping : Stop
-Flushing --> Stopping : Done / Stop
-Stopping --> Stopped
-Stopped --> Flushing : Flush
-Stopped --> idle : Finish (Save results) 
+stateDiagram-v2
+direction LR
+None --> LOADING_RECIPE : LoadRecipe
+LOADING_RECIPE --> None : FailedLoadingRecipe
+
+LOADING_RECIPE --> IDLE : RecipeLoaded
+IDLE --> STARTING_MEASUREMENT : StartMeasurement
+STARTING_MEASUREMENT --> IDLE : Stop
+
+IDLE --> FLUSHING_IDLE : BeginFlush
+FLUSHING_IDLE --> IDLE : FlushDone
+
+None --> FLUSHING_NONE : BeginFlush
+FLUSHING_NONE --> None : FlushDone
+STOPPED -->  FLUSHING_STOPPED : BeginFlush
+
+STARTING_MEASUREMENT --> MEASURING : StartingDone
+MEASURING --> STOPPING_PIPELINE : Stop
+STOPPING_PIPELINE --> STOPPED : Stop
+
+IDLE --> LOADING_RECIPE : LoadRecipe
+
+STOPPED --> RESUMING_MEASUREMENT : StartMeasurement
+RESUMING_MEASUREMENT --> MEASURING : StartMeasurement
+
+RESUMING_MEASUREMENT --> STOPPED : Stop
+
+MEASURING --> STOPPING_PIPELINE_FLUSH : ReachedEndPattern
+STOPPING_PIPELINE_FLUSH --> FLUSHING_STOPPED : BeginFlush
+FLUSHING_STOPPED --> STOPPED : FlushDone
+STOPPED --> FINALIZING_MEASUREMENT : FinishMeasurement
+FINALIZING_MEASUREMENT --> IDLE : SavingComplete
+
 ```
 
 Class diagram overview
@@ -72,19 +88,26 @@ class AutofeederControl {
     <<Abstract>>
 	#IAutofeederControlListener _listener
     +AutofeederControl(IAutofeederControlListener listener)
-    +void StateChanged(AutofeederState oldState, AutofeederState newState, string sampleId, DataTable result)*
+    +void StateChanged(AutofeederState oldState, AutofeederState newState)*
 }
 AutofeederControl *-- IAutofeederControlListener
 AutofeederState --> AutofeederControl
 class AutofeederState {
     <<Enum>>
-    +Idle
-    +Running
-    +Flushing
-    +Stopping
-    +Stopped
-    +LoadingRecipe
-    +WaitingRecipe
+      +None
+      +LOADING_RECIPE
+      +IDLE
+      +STARTING_MEASUREMENT
+      +MEASURING
+      +RESUMING_MEASUREMENT
+      +STOPPING_PIPELINE
+      +STOPPING_PIPELINE_FLUSH
+      +STOPPED
+      +FINALIZING_MEASUREMENT
+      +FLUSHING
+      +FLUSHING_IDLE
+      +FLUSHING_NONE
+      +FLUSHING_STOPPED
 }
 
 ```
@@ -111,7 +134,7 @@ public interface IAutofeederControlListener
     /// <param name="waitCondition">What to wait on when stopping</param>
     /// <param name="doFlush">Controls if a flush is done during stopping of the autofeeder.
     /// This is wanted e.g. in the case of stopping due to low coverage.</param>
-    Task Stop(WaitCondition waitCondition, bool doFlush = false);
+    Task Stop();
 
     /// <summary>Flush the conveyor</summary>
     Task Flush();

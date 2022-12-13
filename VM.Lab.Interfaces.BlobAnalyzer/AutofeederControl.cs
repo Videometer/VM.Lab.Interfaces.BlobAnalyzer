@@ -20,7 +20,7 @@ namespace VM.Lab.Interfaces.BlobAnalyzer
 		}
 
 		/// <summary>Tells the controller that the autofeeder has changed state</summary>
-		public abstract void StateChanged(AutofeederState oldState, AutofeederState newState, string sampleId, DataTable result);
+		public abstract void StateChanged(BlobAnalyzerState oldState, BlobAnalyzerState newState);
 
 		/// <summary>
 		/// The autofeeder will ask the external controller if it would like to specify subfolder for the blob collection
