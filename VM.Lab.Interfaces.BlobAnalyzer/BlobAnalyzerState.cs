@@ -33,9 +33,13 @@
 		/// <summary>Finising and saving results</summary>
 		FINALIZING_MEASUREMENT,
 
-		/// <summary> Flusing, go to stopped after</summary>
+		/// <summary> Flusing, go to IDLE after</summary>
 		FLUSHING_IDLE,
+		
+		/// <summary> Flusing, go to NONE after</summary>
 		FLUSHING_NONE,
+		
+		/// <summary> Flusing, go to STOPPED after</summary>
 		FLUSHING_STOPPED
 	}
 }
