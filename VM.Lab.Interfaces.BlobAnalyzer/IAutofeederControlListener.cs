@@ -18,7 +18,12 @@ namespace VM.Lab.Interfaces.BlobAnalyzer
 		/// <param name="id">ID of the sample</param>
 		/// <param name="initials">Operator initials</param>
 		/// <param name="comments">Operator comments</param>
-		void Start(string id, string initials, string comments);
+		/// <param name="predictionResultName">Result filename (excel /xml file)</param>
+		/// <param name="blobCollectionName">
+		///		Blob Collection name,
+		///		will be saved as {blobCollectionPath}\blobCollectionName\blobCollectionName.blobs
+		/// </param>
+		void Start(string id, string initials, string comments, string predictionResultName, string blobCollectionName);
 
 		/// <summary>Stop/Pause the current measurement</summary>
 		/// This is wanted e.g. in the case of stopping due to low coverage.</param>
