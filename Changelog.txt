@@ -1,2 +1,5 @@
+0.1.5
+- Moved specification of resultFilename and blobCollectionName from methods to arguments to start command
+
 0.1.4
 - Updated LoadRecipe to Void
