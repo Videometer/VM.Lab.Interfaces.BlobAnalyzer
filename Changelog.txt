@@ -1,5 +1,5 @@
 0.1.6
-- Added new RaiseError method to interface
+- Added new BroadcastError method to interface
 
 0.1.5
 - Moved specification of resultFilename and blobCollectionName from methods to arguments to start command

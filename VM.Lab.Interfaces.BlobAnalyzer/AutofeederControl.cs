@@ -22,7 +22,7 @@ namespace VM.Lab.Interfaces.BlobAnalyzer
 		/// <summary>Tells the controller that the blob analyzer has changed state</summary>
 		public abstract void StateChanged(BlobAnalyzerState newState);
 
-		public abstract void RaiseError();
+		public abstract void BroadcastError();
 
 		#region IDisposable Support
 		private bool disposedValue = false; // To detect redundant calls
