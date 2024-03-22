@@ -1,3 +1,6 @@
+1.0.1
+- Added new PrepareForMeasurement method to the interface
+ 
 0.1.6
 - Added new BroadcastError method to interface
 
