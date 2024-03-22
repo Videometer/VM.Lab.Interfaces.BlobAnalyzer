@@ -1,4 +1,4 @@
-# VM.Lab.Interfaces.BlobAnalyzer
+# VM.Lab.Interfaces.BlobAnalyzer 1.0.+
 Defines common available interfaces to VideometerLab Blob analyzers, example blob analyzers are 
 
 <!-- TOC -->
