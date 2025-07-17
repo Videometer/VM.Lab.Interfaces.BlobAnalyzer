@@ -1,21 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <PropertyGroup>
+        <Copyright>Videometer A/S</Copyright>
+        <Authors>Videometer A/S</Authors>
+        <OutputType>Library</OutputType>
         <Version>0.0.0.0</Version>
+        <TargetFrameworks>netstandard2.0;net8.0</TargetFrameworks>
+        <Company>Videometer A/S</Company>
+        <LangVersion>12</LangVersion>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>disable</Nullable>
+        <Configurations>Debug;Release</Configurations>
+        <Platforms>x64</Platforms>
     </PropertyGroup>
-    <PropertyGroup>
-        <ProjectGuid>{2f6762d3-b243-4f5e-9cb8-746efcd866fc}</ProjectGuid>
-        <RootNamespace>VM.Lab.Interfaces.BlobAnalyzer</RootNamespace>
-        <AssemblyName>VM.Lab.Interfaces.BlobAnalyzer</AssemblyName>
-        <TargetFramework>netstandard2.0</TargetFramework>
-        <LangVersion>7.3</LangVersion>
-        <Company>Videometer</Company>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x64' ">
+        <DebugType>full</DebugType>
     </PropertyGroup>
-    <PropertyGroup>
-        <TargetFramework>netstandard2.0</TargetFramework>
+    <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x64' ">
+        <DebugSymbols>true</DebugSymbols>
+        <DebugType>pdbonly</DebugType>
     </PropertyGroup>
-    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors />
-    </PropertyGroup>
-
 </Project>
