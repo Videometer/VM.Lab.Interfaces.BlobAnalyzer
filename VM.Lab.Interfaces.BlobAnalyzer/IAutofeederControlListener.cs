@@ -9,19 +9,7 @@ public interface IAutofeederControlListener
 	/// </summary>
 	/// <param name="recipeName">The path or name of the recipe.</param>
 	void LoadRecipe(string recipeName);
-
-	/// <summary>
-	/// Configure the naming of delivery bins. Applicable to SeedLab, SeedSorter etc.
-	///
-	/// The mapping is between a generic bin tag (ex. M96_1 for the first 96-well MTP plate) and a bin ID (barcode, name, accession etc.)
-	///
-	/// Mappings with invalid tags are ignored.
-	///
-	/// If a non-empty mapping is provided, SeedLab and SeedSorter will not prompt about which bin mapping to use. 
-	/// </summary>
-	/// <param name="mapping">Dictionary of bin tag and bin ID</param>
-	void SetBinIds(Dictionary<string, string> mapping);
-		
+	
 	/// <summary>Start a new measurement</summary>
 	/// <param name="id">ID of the sample</param>
 	/// <param name="initials">Operator initials</param>

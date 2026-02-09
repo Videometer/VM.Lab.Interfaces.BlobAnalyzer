@@ -8,10 +8,7 @@ public enum BlobAnalyzerState
 
 	/// <summary>A recipe is being loaded</summary>
 	LOADING_RECIPE,
-		
-	/// <summary>Bin ids are being set</summary>
-	SETTING_BINS,
-		
+	
 	/// <summary>Idle / Ready to start</summary>
 	IDLE,
 

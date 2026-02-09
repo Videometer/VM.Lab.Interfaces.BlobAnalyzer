@@ -155,4 +155,3 @@ public interface IAutofeederControlListener
     Task Finish();
 }
 ```
-This version is not compatible with VideometerLab versions 3.26.108+
