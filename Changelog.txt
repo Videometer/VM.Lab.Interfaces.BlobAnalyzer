@@ -1,3 +1,7 @@
+1.0.8
+- Added new interface for controlling SeedLab
+- Added example of implementing a web interface for controlling SeedLab
+
 1.0.7
 - changelog updated
 
