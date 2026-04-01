@@ -8,14 +8,16 @@ Defines common available interfaces to VideometerLab Blob analyzers, example blo
   * [WaitCondition](#waitcondition)
   * [IAutofeederControlListener](#iautofeedercontrollistener)
   * [AutofeederControl](#autofeedercontrol)
+  * [SeedLabControl](#seedlabcontrol)
 <!-- TOC -->
 
 ## Introduction
-Defines common available interfaces to VideometerLab Blob analyzers, example blob analyzers are
-* VideometerLab Autofeeder blobAnalyzer
-* VideometerLab X/Y blobAnalyzer
+Defines common available interfaces to VideometerLab blob analyzers, example blob analyzers are
+* VideometerLab Autofeeder Blob Analyzer
+* VideometerLabXY Blob Analyzer
+* Videometer SeedLab
 
-Notice, that interface is called Autofeeder* in many cases, this is due to legacy inheritance, the plugin can be used to controll both Autofeeder Blob analyzer and Videometerlab X/Y Blob Analyzer
+Notice, that interface is called Autofeeder* in many cases, this is due to legacy inheritance, the plugin can be used to control both Autofeeder Blob analyzer and VideometerLabXY Blob Analyzer
 
 The interface exposes the basic features that is available from the user interface
 
@@ -155,3 +157,8 @@ public interface IAutofeederControlListener
     Task Finish();
 }
 ```
+
+## SeedLabControl
+Base class for controlling SeedLab. Loadable libraries that implement this class will be detected and gives the implementer the ability to control SeedLab. Extends upon `AutofeederControl` by providing the ability to set the id of delivery bins. This must be done after selecting a recipe, but before calling `Start` on `ISeedLabControlListener`.
+
+A complete working example is provided in the `VM.Lab.Plugins.WebControl` project. This example is provided _as is_ and is only intended to illustrate a possible use case.
