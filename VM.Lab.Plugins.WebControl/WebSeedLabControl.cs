@@ -193,7 +193,7 @@ internal class SimpleWebServer
         return @"<!DOCTYPE html>
 <html>
 <head>
-    <title>SeedLab Control</title>
+    <title>SeedLab Control Demo</title>
     <style>
         body { font-family: sans-serif; padding: 20px; max-width: 800px; margin: auto; background: #f0f2f5; }
         .card { background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); margin-bottom: 20px; }
@@ -209,10 +209,11 @@ internal class SimpleWebServer
     </style>
 </head>
 <body>
-    <h1>SeedLab Web Control</h1>
+    <h1>SeedLab Web Control Demo</h1>
     
     <div class='card'>
         <h2>System Status</h2>
+        <p>Not intended for production use!</>
         <div id='status' class='status-badge normal'>Checking...</div>
         <div id='error-banner' style='display:none; color: red; margin-top: 10px; font-weight: bold;'>⚠️ SYSTEM ERROR BROADCASTED</div>
     </div>
