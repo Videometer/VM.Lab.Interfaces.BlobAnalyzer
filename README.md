@@ -21,6 +21,8 @@ Notice, that interface is called Autofeeder* in many cases, this is due to legac
 
 The interface exposes the basic features that is available from the user interface
 
+For VideometerLab 3.26, the netstandard2.0 platform must be used. For VideometerLab 4, .NET 8 platform must be used.
+
 ## AutofeederState
 Represents the state of the autofeeder, used to communicate state transitions to the controller
 
@@ -159,6 +161,40 @@ public interface IAutofeederControlListener
 ```
 
 ## SeedLabControl
-Base class for controlling SeedLab. Loadable libraries that implement this class will be detected and gives the implementer the ability to control SeedLab. Extends upon `AutofeederControl` by providing the ability to set the id of delivery bins. This must be done after selecting a recipe, but before calling `Start` on `ISeedLabControlListener`.
+
+Blob Analyzer sessions which use SeedLab need to be controlled using `SeedLabControl` in order to allow for fully automatic operation. The operation is mostly similar to that of `AutofeederControl` with an additional method.
+
+It is necessary to set the ID of the used delivery bins, which is done with the `SetBinIds` method. It has the signature:
+
+```C#
+    void SetBinIds(Dictionary<string, string> mapping);
+```
+
+The mapping is between a generic bin tag (ex. M96_1 for the first 96-well MTP plate) and a bin ID (barcode, name, accession etc.). This must be done after selecting a recipe, but before calling `Start` on `ISeedLabControlListener`.
+
+The possible bin tags are:
+
+### MTP6, MTP48, MTP96
+
+Has the following layout:
+
+![](assets/MTP6.png)
+
+
+### Petri dish
+
+Has the following layout:
+
+![](assets/petri_dish.png)
+
+### Plastic cups
+
+Has the following layout:
+
+![](assets/plastic_cups.png)
+
+Mappings with invalid tags are ignored.
+
+If a non-empty mapping is provided, SeedLab and SeedSorter will not prompt about which bin mapping to use. 
 
 A complete working example is provided in the `VM.Lab.Plugins.WebControl` project. This example is provided _as is_ and is only intended to illustrate a possible use case.
