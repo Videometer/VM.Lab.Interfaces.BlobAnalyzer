@@ -6,7 +6,7 @@ public interface ISeedLabControlListener : IAutofeederControlListener
 	/// <summary>
 	/// Configure the naming of delivery bins. Applicable to SeedLab, SeedSorter etc.
 	///
-	/// The mapping is between a generic bin tag (ex. M96_1 for the first 96-well MTP plate) and a bin ID (barcode, name, accession etc.)
+	/// The mapping is between a generic bin tag (ex. M96_1 for the first 96-well MTP plate) and a bin ID (barcode, name, accession etc.). See README.md in repository for naming scheme of the various delivery bins.
 	///
 	/// Mappings with invalid tags are ignored.
 	///
