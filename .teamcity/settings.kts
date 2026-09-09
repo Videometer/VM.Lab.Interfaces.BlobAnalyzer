@@ -1,11 +1,11 @@
-import jetbrains.buildServer.configs.kotlin.*
+﻿import jetbrains.buildServer.configs.kotlin.*
 import jetbrains.buildServer.configs.kotlin.buildSteps.*
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
 /*
  * Generated 2026-09-08 as part of the Cloud migration (Platform onboarding).
  * Build and test only. Publish is added later, together with the versioning
- * decision and the feed write token - see VM.IaC docs/teamcity.md, Platform-flowet.
+ * decision and the feed write token - see VM.IaC docs/teamcity.md, the Platform flow section.
  * Restore resolves through the agent's machine config (GitHub Packages + nuget.org).
  */
 
