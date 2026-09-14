@@ -1,4 +1,5 @@
 ﻿import jetbrains.buildServer.configs.kotlin.*
+import jetbrains.buildServer.configs.kotlin.buildFeatures.commitStatusPublisher
 import jetbrains.buildServer.configs.kotlin.buildSteps.*
 import jetbrains.buildServer.configs.kotlin.triggers.vcs
 
@@ -48,6 +49,15 @@ project {
                 name = "Test"
                 projects = "VM.Lab.Interfaces.BlobAnalyzer.sln"
                 configuration = "Release"
+            }
+        }
+
+        features {
+            commitStatusPublisher {
+                publisher = github {
+                    githubUrl = "https://api.github.com"
+                    authType = vcsRoot()
+                }
             }
         }
 
